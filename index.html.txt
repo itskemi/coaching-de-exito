@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching de Éxito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¡Bienvenido a Coaching de Éxito!</h1>
+        <p>Recibe respuestas motivacionales para tu camino hacia el éxito.</p>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot-message">¡Hola! Soy tu coach virtual. ¿Cómo puedo ayudarte hoy?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Escribe una pregunta o mensaje...">
+        <button id="send-button">Enviar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

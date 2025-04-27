@@ -1,0 +1,51 @@
+document.getElementById('send-button').addEventListener('click', async function() {
+    const userInput = document.getElementById('user-input').value;
+    if (userInput.trim() === '') return;
+
+    // Mostrar mensaje del usuario
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.classList.add('message', 'user-message');
+    userMessageDiv.textContent = userInput;
+    document.getElementById('chat-box').appendChild(userMessageDiv);
+document.getElementById('send-button').addEventListener('click', async function() {
+    const userInput = document.getElementById('user-input').value;
+    if (userInput.trim() === '') return;
+
+    // Mostrar mensaje del usuario
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.classList.add('message', 'user-message');
+    userMessageDiv.textContent = userInput;
+    document.getElementById('chat-box').appendChild(userMessageDiv);
+
+    // Limpiar campo de texto
+    document.getElementById('user-input').value = '';
+
+    // Enviar mensaje a la IA y recibir respuesta
+    const response = await getAIResponse(userInput);
+
+    // Mostrar respuesta de la IA
+    const botMessageDiv = document.createElement('div');
+    botMessageDiv.classList.add('message', 'bot-message');
+    botMessageDiv.textContent = response;
+    document.getElementById('chat-box').appendChild(botMessageDiv);
+
+    // Desplazar hacia abajo para la última respuesta
+    document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+});
+
+async function getAIResponse(userInput) {
+    const response = await fetch('https://api-inference.huggingface.co/models/gpt2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer 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`  // Tu token de Hugging Face
+        },
+        body: JSON.stringify({
+            inputs: userInput,
+        })
+    });
+
+    const data = await response.json();
+    return data[0].generated_text.trim();  // Respuesta de la IA
+}
+
